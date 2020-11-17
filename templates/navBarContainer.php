@@ -23,16 +23,13 @@
 			</div>
 
 			<div class="navItem">
-				<span role="link" tabindex="0" onclick="openPage('yourMusic.php')" class="navItemLink">Your Music</span>
+				<span role="link" tabindex="0" onclick="openPage('../pages/yourMusic.php')" class="navItemLink">Your Music</span>
 			</div>
 
 			<div class="navItem">
-				<span role="link" tabindex="0" onclick="openPage('profile.php')" class="navItemLink">Sakhamen Mhlongo</span>
+				<span role="link" tabindex="0" onclick="openPage('../pages/settings.php')" class="navItemLink"><?php echo $userLoggedIn->getFirstAndLastName(); ?></span>
 			</div>
 		</div>
-
-
-
 
 	</nav>
 </div>

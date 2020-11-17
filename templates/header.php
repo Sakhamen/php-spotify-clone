@@ -1,17 +1,18 @@
 <?php
 include("../config/config.php");
+include("../includes/classes/User.php");
 include("../includes/classes/Artist.php");
 include("../includes/classes/Album.php");
 include("../includes/classes/Song.php");
-
-//session_destroy(); LOGOUT
+include("../includes/classes/Playlist.php");
 
 if(isset($_SESSION['userLoggedIn'])) {
-	$userLoggedIn = $_SESSION['userLoggedIn'];
-	echo "<script>userLoggedIn = '$userLoggedIn';</script>";
+	$userLoggedIn = new User($con, $_SESSION['userLoggedIn']);
+	$username = $userLoggedIn->getUsername();
+	echo "<script>userLoggedIn = '$username';</script>";
 }
 else {
-	header("Location: register.php");
+	header("Location: ../index.php");
 }
 
 ?>
@@ -22,7 +23,7 @@ else {
 
 	<link rel="stylesheet" type="text/css" href="../assets/css/style.css">
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="../assets/vendors/jquery.min.js"></script>
 	<script src="../assets/js/script.js"></script>
 </head>
 
@@ -32,7 +33,7 @@ else {
 
 		<div id="topContainer">
 
-			<?php include("/navBarContainer.php"); ?>
+			<?php include("navBarContainer.php"); ?>
 
 			<div id="mainViewContainer">
 

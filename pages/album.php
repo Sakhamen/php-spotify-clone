@@ -1,4 +1,5 @@
-<?php include("../includes/includedFiles.php");
+<?php
+include("../includes/includedFiles.php");
 
 if(isset($_GET['id'])) {
 	$albumId = $_GET['id'];
@@ -9,6 +10,7 @@ else {
 
 $album = new Album($con, $albumId);
 $artist = $album->getArtist();
+$artistId = $artist->getId();
 ?>
 
 <div class="entityInfo">
@@ -19,7 +21,7 @@ $artist = $album->getArtist();
 
 	<div class="rightSection">
 		<h2><?php echo $album->getTitle(); ?></h2>
-		<p>By <?php echo $artist->getName(); ?></p>
+		<p role="link" tabindex="0" onclick="openPage('artist.php?id=$artistId')">By <?php echo $artist->getName(); ?></p>
 		<p><?php echo $album->getNumberOfSongs(); ?> songs</p>
 
 	</div>
@@ -52,7 +54,8 @@ $artist = $album->getArtist();
 					</div>
 
 					<div class='trackOptions'>
-						<img class='optionsButton' src='../assets/images/icons/more.png'>
+						<input type='hidden' class='songId' value='" . $albumSong->getId() . "'>
+						<img class='optionsButton' src='../assets/images/icons/more.png' onclick='showOptionsMenu(this)'>
 					</div>
 
 					<div class='trackDuration'>
@@ -74,3 +77,9 @@ $artist = $album->getArtist();
 
 	</ul>
 </div>
+
+
+<nav class="optionsMenu">
+	<input type="hidden" class="songId">
+	<?php echo Playlist::getPlaylistsDropdown($con, $userLoggedIn->getUsername()); ?>
+</nav>

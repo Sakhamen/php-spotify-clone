@@ -20,7 +20,7 @@ $artist = new Artist($con, $artistId);
 			<h1 class="artistName"><?php echo $artist->getName(); ?></h1>
 
 			<div class="headerButtons">
-				<button class="button green">PLAY</button>
+				<button class="button green" onclick="playFirstSong()">PLAY</button>
 			</div>
 
 		</div>
@@ -49,7 +49,7 @@ $artist = new Artist($con, $artistId);
 
 			echo "<li class='tracklistRow'>
 					<div class='trackCount'>
-						<img class='play' src='assets/images/icons/play-white.png' onclick='setTrack(\"" . $albumSong->getId() . "\", tempPlaylist, true)'>
+						<img class='play' src='../assets/images/icons/play-white.png' onclick='setTrack(\"" . $albumSong->getId() . "\", tempPlaylist, true)'>
 						<span class='trackNumber'>$i</span>
 					</div>
 
@@ -60,7 +60,8 @@ $artist = new Artist($con, $artistId);
 					</div>
 
 					<div class='trackOptions'>
-						<img class='optionsButton' src='assets/images/icons/more.png'>
+						<input type='hidden' class='songId' value='" . $albumSong->getId() . "'>
+						<img class='optionsButton' src='../assets/images/icons/more.png' onclick='showOptionsMenu(this)'>
 					</div>
 
 					<div class='trackDuration'>
@@ -94,7 +95,7 @@ $artist = new Artist($con, $artistId);
 
 
 			echo "<div class='gridViewItem'>
-					<span role='link' tabindex='0' onclick='openPage(\"pages/album.php?id=" . $row['id'] . "\")'>
+					<span role='link' tabindex='0' onclick='openPage(\"album.php?id=" . $row['id'] . "\")'>
 						<img src='" . $row['artworkPath'] . "'>
 
 						<div class='gridViewInfo'>"
@@ -110,3 +111,8 @@ $artist = new Artist($con, $artistId);
 	?>
 
 </div>
+
+<nav class="optionsMenu">
+	<input type="hidden" class="songId">
+	<?php echo Playlist::getPlaylistsDropdown($con, $userLoggedIn->getUsername()); ?>
+</nav>
