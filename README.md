@@ -3,7 +3,7 @@
 Fully functional Spotify Clone built using HTML5, CSS, jQuery/Ajax, PHP and MySQL.
 
 
-## Web Preview
+## Preview
 
 
 ### Login Page
@@ -18,9 +18,9 @@ Fully functional Spotify Clone built using HTML5, CSS, jQuery/Ajax, PHP and MySQ
 
 ![Friends Page](/screenshots/3.png)
 
-### Search Page
+### Playlist Page
 
-![Feed Page](/screenshots/4.png)
+![Playlist Page](/screenshots/4.png)
 
 ### Playlist Details Page
 
